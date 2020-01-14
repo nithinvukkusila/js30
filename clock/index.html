@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+           clock .....
+        </title>
+    </head>
+    <body>
+        <center>
+            <h2 style="color:red">clock using css and javascript </h2>
+        </center>
+        <div class="clock">
+            <div class="clock-face">
+
+           
+            <div class="hand hour-hand" style="background-color: rgb(1, 2, 1);"></div>
+            <div class="hand min-hand" style="background-color:rgb(161, 161, 255);"></div>
+            <div class="hand second-hand"></div>
+        </div>
+    </div>
+    <style>
+    html,body
+    {
+  background-image:  url(koala.jpg);
+  /* background-size: cover; */
+  background-position: center;
+  background-repeat: no-repeat;
+    }
+
+    .clock{
+     margin: 20px auto;
+     margin-top: 150px;
+     width: 300px;
+     height: 500px;
+     border: 20px solid rgb(245, 141, 141);
+     border-radius: 50%;
+ }
+ .hand
+{
+   width: 50%;
+   height: 6px;
+   background: rgb(230, 188, 188);
+   position: absolute;
+   top: 50%; 
+   transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0, 2.99, 1, 1);
+}
+ 
+ .clock-face
+ {
+     position: relative;
+     width: 100%;
+     height: 100%;
+     transform:  translateY(-3px);
+ }
+
+
+ 
+ </style>
+
+<script>
+const secondHand = document.querySelector('.second-hand');
+  const minsHand = document.querySelector('.min-hand');
+  const hourHand = document.querySelector('.hour-hand');
+
+  function setDate() {
+    const now = new Date();
+
+    const seconds = now.getSeconds();
+    const secondsDegrees = ((seconds / 60) * 360) + 90;
+    secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+    const mins = now.getMinutes();
+    const minsDegrees = ((mins / 60) * 360) + ((seconds/60)*6) + 90;
+    minsHand.style.transform = `rotate(${minsDegrees}deg)`;
+
+    const hour = now.getHours();
+    const hourDegrees = ((hour / 12) * 360) + ((mins/60)*30) + 90;
+    hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+  }
+
+setInterval(() => {
+   setDate(); 
+}, 1000);
+</script>
+
+    </body>
+</html>
